@@ -19,7 +19,7 @@ sleep 1
 echo "0" >  "/sys/class/gpio/gpio19/value"
 sleep 1  
 echo "1" >   "/sys/class/gpio/gpio19/value"
-openocd -f ecp5-25f.cfg
+openocd -f ecp5-25f.cfg -c "init; scan_chain; svf -tap lfe5u25.tap -quiet -progress $1; shutdown; quit"
 # Boot0 = 1
 echo "0" >  "/sys/class/gpio/unexport"
 echo "0" >  "/sys/class/gpio/export"

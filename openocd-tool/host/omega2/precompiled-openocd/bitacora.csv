@@ -1,0 +1,4 @@
+/home/johnny/projects/litex-and-softcore-projects/openocd-tool/openocd-tool/host/omega2/omega-packs
+date,command,observations
+Sun 10 May 2020 11:55:35 AM -05,scp openocd_v0.10.0-1_mipsel_24kc.ipk root@192.168.1.66:/root/,enviando paquete ipk a onion por ssh
+Sun 10 May 2020 12:00:04 PM -05,scp hidapi_0.8.0-rc1-2_mipsel_24kc.ipk root@192.168.1.66:/root/,dependencia para el paquete openocd_v0.10.0-1_mipsel_24kc.ipk

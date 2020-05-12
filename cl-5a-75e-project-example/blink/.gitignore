@@ -1,2 +1,4 @@
 *.svf
 *.bit
+blink.json
+blink_out.config

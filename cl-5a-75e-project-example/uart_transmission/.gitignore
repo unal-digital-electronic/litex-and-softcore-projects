@@ -1,0 +1,4 @@
+*.svf
+*.bit
+top.json
+top_out.config

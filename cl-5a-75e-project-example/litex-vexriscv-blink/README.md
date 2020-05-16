@@ -56,4 +56,6 @@ La tecla control se simboliza con ^
 ^c ^d ^c
 ```
 
+## Referencias
 
+[Qué es LiteX](https://github.com/timvideos/litex-buildenv/wiki/LiteX-for-Hardware-Engineers#litescope-sampler)

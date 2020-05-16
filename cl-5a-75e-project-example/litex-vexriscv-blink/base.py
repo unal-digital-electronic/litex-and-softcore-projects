@@ -5,7 +5,7 @@ from migen import *
 from migen.genlib.io import CRG
 
 from litex.build.generic_platform import IOStandard, Subsignal, Pins
-from litex_boards.platforms import colorlight_5a_75b
+from litex_boards.platforms import colorlight_5a_75e
 
 from litex.soc.integration.soc_core import *
 from litex.soc.integration.builder import *

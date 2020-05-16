@@ -93,3 +93,5 @@ riscv32-unknown-elf-gcc -v
 [Manejo de entornos en coda](https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/20/conda/)
 
 [Canal conda de timvideos](https://anaconda.org/timvideos/repo/installers)
+
+[litex-conda-packages](https://github.com/litex-hub/litex-conda-packages)

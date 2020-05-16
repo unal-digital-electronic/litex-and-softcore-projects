@@ -39,4 +39,5 @@ main.o: main.c
 clean:
 	$(RM) $(OBJECTS) $(OBJECTS:.o=.d) firmware.elf firmware.bin .*~ *~
 
-.PHONY: all main.o clean load
+.PHONY: clean
+# .PHONY: all main.o clean load

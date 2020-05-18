@@ -123,9 +123,9 @@ static void console_service(void)
 	/* else if(strcmp(token, "led") == 0) */
 	/* 	led_test(); */
 	else if(strcmp(token, "leds-on") == 0)
-		leds(2);   //lógica negativa
+		leds(2);   // 1 0
 	else if(strcmp(token, "leds-off") == 0)
-		leds(1);   //lógica negativa
+		leds(1);   // 0 1
 	prompt();
 }
 

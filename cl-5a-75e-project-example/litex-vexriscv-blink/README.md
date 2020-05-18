@@ -1,12 +1,14 @@
 # Litex 
 
 En éste ejemplo se encenderá un led
-a través de tokens dados desde el promt
+a través de tokens dados desde el prompt
 
 Los tokens son:
 
 * **ledon**: Encender el LED de usuario
 * **ledoff**: Apagar el LED de usuario
+
+<video src="./video/vexriscv-cl-5a-75e.mp4" autoplay loop></video>
 
 ## Pasos
 
@@ -18,7 +20,7 @@ conda activate fpga
 
 Contruir el gateware y el bios
 
-```
+```bash
 make build
 ```
 
@@ -59,3 +61,8 @@ La tecla control se simboliza con ^
 ## Referencias
 
 [Qué es LiteX](https://github.com/timvideos/litex-buildenv/wiki/LiteX-for-Hardware-Engineers#litescope-sampler)
+
+[Documentación vexriscV](https://github.com/SpinalHDL/VexRiscv)
+
+[vexriscV cpu](https://tomverbeure.github.io/rtl/2018/12/06/The-VexRiscV-CPU-A-New-Way-To-Design.html#designing-a-cpu-the-traditional-way)
+

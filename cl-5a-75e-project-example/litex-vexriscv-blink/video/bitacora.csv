@@ -1,0 +1,3 @@
+/home/johnny/projects/litex-and-softcore-projects/cl-5a-75e-project-example/litex-vexriscv-blink/video
+date,command,observations
+Sun 17 May 2020 10:54:53 PM -05,ffmpeg -ss 00:00:22 -t 11 -i vexriscv-cl-5a-75e.mp4 -filter:v setpts=0.25*PTS vexriscv-cl-5a-75e.gif,crear gif con un intervalo de tiempo seleccionado y velocidad 2 veces mas rapido

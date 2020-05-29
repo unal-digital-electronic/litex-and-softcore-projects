@@ -14,11 +14,14 @@ from ios import Led
 
 # IOs ----------------------------------------------------------------------------------------------
 
+_io = [
+    ("user_led_n",  0, Pins("H4"), IOStandard("LVCMOS33")),
+    ]
+
 _serial = [
     ("serial", 0,
-        Subsignal("tx", Pins("F3")), # J1.1
-        # Subsignal("rx", Pins("M13")), # J1.2
-        Subsignal("rx", Pins("F1")), # J1.2
+        Subsignal("tx", Pins("F3")), # SoloNelson: J1.5
+        Subsignal("rx", Pins("F1")), # SoloNelson: J1.2
         IOStandard("LVCMOS33")
     ),
 ]

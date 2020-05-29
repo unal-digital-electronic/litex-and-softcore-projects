@@ -2,7 +2,18 @@ LOCATE COMP "clk_i" SITE "P6";
 IOBUF PORT "clk_i" IO_TYPE=LVCMOS33;
 FREQUENCY PORT "clk_i" 25 MHZ;
 
-LOCATE COMP "led_o" SITE "P11";
+# LOCATE COMP "led_o" SITE "P11"; # LED BOARD
+# LOCATE COMP "led_o" SITE "G3"; # U28.4
+# LOCATE COMP "led_o" SITE "F3"; # U28.2
+# LOCATE COMP "led_o" SITE "F1"; # U28.3
+# LOCATE COMP "led_o" SITE "G2"; # U28.5
+# LOCATE COMP "led_o" SITE "H3"; # U28.6
+# LOCATE COMP "led_o" SITE "H5"; # U28.7
+# LOCATE COMP "led_o" SITE "F15"; # Todos los Jx.8
+# LOCATE COMP "led_o" SITE "L2"; # Todos los Jx.9
+
+# LOCATE COMP "led_o" SITE "J4"; # J3.1
+# LOCATE COMP "led_o" SITE "H4"; # J5.1
 
 IOBUF PORT "led_o" IO_TYPE=LVCMOS25;
 

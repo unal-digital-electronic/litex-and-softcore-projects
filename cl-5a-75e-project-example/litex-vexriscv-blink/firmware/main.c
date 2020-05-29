@@ -7,15 +7,15 @@
 #include <console.h>
 #include <generated/csr.h>
 
-static void busy_wait1(unsigned int ds)
-{
-	timer0_en_write(0);
-	timer0_reload_write(0);
-	timer0_load_write(CONFIG_CLOCK_FREQUENCY/10*ds);
-	timer0_en_write(1);
-	timer0_update_value_write(1);
-	while(timer0_value_read()) timer0_update_value_write(1);
-}
+/* static void busy_wait1(unsigned int ds) */
+/* { */
+/* 	timer0_en_write(0); */
+/* 	timer0_reload_write(0); */
+/* 	timer0_load_write(CONFIG_CLOCK_FREQUENCY/10*ds); */
+/* 	timer0_en_write(1); */
+/* 	timer0_update_value_write(1); */
+/* 	while(timer0_value_read()) timer0_update_value_write(1); */
+/* } */
 
 
 static char *readstr(void)
@@ -82,7 +82,9 @@ static void help(void)
 	puts("Available commands:");
 	puts("help                            - this command");
 	puts("reboot                          - reboot CPU");
-	puts("led                             - led test");
+	/* puts("led                             - led test"); */
+	puts("leds-on                            - leds test");
+	puts("leds-off                            - leds test");
 }
 
 static void reboot(void)
@@ -90,18 +92,18 @@ static void reboot(void)
 	ctrl_reset_write(1);
 }
 
-static void led_test(void)
-{
-	int i;
-	printf("led_test...\n");
-	for(i=0; i<32; i++) {
-		leds_out_write(i);
-		busy_wait1(10);
-	    printf("led_test... %d \n", i);
-	}
-}
+/* static void led_test(void) */
+/* { */
+/* 	int i; */
+/* 	printf("led_test...\n"); */
+/* 	for(i=0; i<32; i++) { */
+/* 		leds_out_write(i); */
+/* 		busy_wait1(10); */
+/* 	    printf("led_test... %d \n", i); */
+/* 	} */
+/* } */
 
-static void led(int status)
+static void leds(int status)
 {
    leds_out_write(status);
 }
@@ -118,12 +120,12 @@ static void console_service(void)
 		help();
 	else if(strcmp(token, "reboot") == 0)
 		reboot();
-	else if(strcmp(token, "led") == 0)
-		led_test();
-	else if(strcmp(token, "ledon") == 0)
-		led(1);
-	else if(strcmp(token, "ledoff") == 0)
-		led(0);
+	/* else if(strcmp(token, "led") == 0) */
+	/* 	led_test(); */
+	else if(strcmp(token, "leds-on") == 0)
+		leds(2);   // 1 0
+	else if(strcmp(token, "leds-off") == 0)
+		leds(1);   // 0 1
 	prompt();
 }
 

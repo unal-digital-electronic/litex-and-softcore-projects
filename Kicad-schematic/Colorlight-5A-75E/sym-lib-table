@@ -1,0 +1,5 @@
+(sym_lib_table
+  (lib (name FPGA-LFE5U-25F)(type Legacy)(uri ${KIPRJMOD}/modules/LFE5U-25F/LFE5U-25F-6BG256C.lib)(options "")(descr ""))
+  (lib (name ESMT)(type Legacy)(uri ${KIPRJMOD}/modules/M12L1616/ESMT.lib)(options "")(descr ""))
+  (lib (name SPI-FLASH)(type Legacy)(uri ${KIPRJMOD}/modules/W25Q32/W25Q32JVSSIQ.lib)(options "")(descr ""))
+)

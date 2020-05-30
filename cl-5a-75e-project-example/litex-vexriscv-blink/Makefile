@@ -3,22 +3,22 @@
 # e-mail: jgcubidesc@gmail.com
 # date: Friday 15 May 2020
 
-TARGET=top
+TARGET=colorlight_5a_75e
 TOP=top
 GATE_DIR=build/gateware
 SOFT_DIR=build/software
 
 # Poner la dirección del puerto serial que está usando
 # o agregarlo en la línea de comandos ejemplo: make SERIAL=/dev/ttyUSB0x
-SERIAL?=/dev/ttyUSB0
+SERIAL?=/dev/ttyUSB1
 
 # Poner la dirección ip de la omega2 para poder conectarse a ella desde ssh
 # o agregarlo en la línea de comandos ejemplo: make IP=x.x.x.x
-IP_OMEGA?=192.168.3.1
+IP_OMEGA?=192.168.0.16
 
 # Poner el directorio destino de la omega2 para subir el bitstream, el lugar ideal es aquel donde tenga el script program.sh
 # o agregarlo en la línea de comandos ejemplo: make IP=/root/
-PATH_DEST?=/root/
+PATH_DEST?=/root/home/colorlight-5A-75E-openocd-config/
 
 NEXTPNR=nextpnr-ecp5
 CC=riscv32-unknown-elf-gcc

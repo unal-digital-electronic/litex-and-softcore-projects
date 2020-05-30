@@ -16,8 +16,8 @@ from ios import Led
 
 _serial = [
     ("serial", 0,
-        Subsignal("tx", Pins("F3")),  # J1.1
-        Subsignal("rx", Pins("F1")),  # J1.2
+        Subsignal("tx", Pins("G3")),  # SoloNelson: J1.2
+        Subsignal("rx", Pins("H3")),  # SoloNelson: J1.5
         IOStandard("LVCMOS33")
      ),
 ]
@@ -25,7 +25,7 @@ _serial = [
 
 _leds = [
     ("user_led", 0, Pins("P11"), IOStandard("LVCMOS33")),  # LED en la placa
-    ("user_led", 1, Pins("G3"), IOStandard("LVCMOS33")),  # LED externo
+    ("user_led", 1, Pins("H4"), IOStandard("LVCMOS33")),  # SoloNelson: J5.1 LED externo
 ]
 
 

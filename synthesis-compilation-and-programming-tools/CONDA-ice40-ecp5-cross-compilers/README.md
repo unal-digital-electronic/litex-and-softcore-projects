@@ -71,7 +71,8 @@ conda activate fpga
 ```bash
 conda install --channel "TimVideos" nextpnr-ecp5
 conda install --channel "TimVideos" nextpnr-ice40
-conda install -c litex-hub gcc-riscv32-elf-newlib
+conda install --channel "TimVideos" gcc-riscv32-elf-newlib
+conda install --channel "TimVideos" iceprog
 ```
 
 #### Verificación de herramientas instaladas

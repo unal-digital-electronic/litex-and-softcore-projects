@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP LFE5U-25F-6BG256C
+D FPGA - Field Programmable Gate Array ECP5; 24.3K LUTs; 1.1V
+K
+F http://www.latticesemi.com/view_document?document_id=50461
+$ENDCMP
+#
+#End Doc Library

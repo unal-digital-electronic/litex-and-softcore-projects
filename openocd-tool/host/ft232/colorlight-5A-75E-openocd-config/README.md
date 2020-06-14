@@ -84,11 +84,14 @@ Agregar el siguiente contenido:
 #ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", GROUP="usb"
 SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", ATTRS{serial}=="FT1X69GT", SYMLINK+="ttyUSBFTDI"
 ```
+Reiniciar reglas
+
+`sudo udevadm control --reload-rules && udevadm trigger`
 
 #### Permisos de usuario
 
 ```bash
-sudo usermod -a -G dialout $USER
+sudo usermod -a $USER -G dialout
 ```
 
 ### 3. Configuración de FPGA Blink

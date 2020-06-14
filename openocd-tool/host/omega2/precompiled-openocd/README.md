@@ -4,6 +4,9 @@
 Los siguientes paquetes fueron cross-compilados para que openocd
 pueda ser ejecutado desde la omega2 u omega2+
 
+**Nota**: Si desea cross compilar estos paquetes para la onion puede
+revisar la información que encontrará en [cross-compile-openocd.md](./cross-compile-openocd.md)
+
 ## Instalación
 
 ### Subir los paquetes a la omega2

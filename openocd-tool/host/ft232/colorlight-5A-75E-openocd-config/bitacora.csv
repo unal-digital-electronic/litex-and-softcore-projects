@@ -1,0 +1,3 @@
+/home/johnny/Downloads/litex-and-softcore-projects/openocd-tool/host/ft232/colorlight-5A-75E-openocd-config
+date,command,observations
+Sat 13 Jun 2020 11:29:49 PM -05,zip blink-example-ft232.zip blink.svf ft232r.cfg program.sh README.md,empaquetando ejemplo

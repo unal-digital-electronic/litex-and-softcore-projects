@@ -6,6 +6,9 @@
 * **ecp5-25f.cfg** configuración que usará openocd para programar la flash o la fpga directamente
 * **sysfsgpio-onion.cfg** configuración de los gpio usados para el jtag, éste archivo es llamado por ecp5-25f.cfg como una fuente
 
+**Nota**: En [éste archivo .zip](./example-blink-from-omega2.zip) encontrará lo suficiente para programar el ejemplo blink,
+se ofrece de ésta manera sino requiere clonar el repositorio.
+
 ## Requerimientos
 
 * **OpenOCD** instalado en omega2 (En éste repositorio en el directorio **../omega-packs/** encontrará los precompilados de openocd para instalar en omega2)

@@ -25,24 +25,24 @@ Tenga presenta la siguiente información para conectar la FPGA y el adapatdor FT
 
 ![ft232cap](./img/FT232sch.png)
 
-![ft232svg](./img/ft232photo.svg)
-
 Etiquetas de los pines en los modos UART y JTAG
 
 |Pin|FT232 UART|FT232 JTAG|
 |:-------------:|:-------------:|:-----:|
-|1*| TXD|TDI|
-|5*| RXD|TDO|
-|11|CTS|TCK|
-|3| RTS|TMS|
+|1*| TXD|TCK|
+|5*| RXD|TDI|
+|11|CTS|TMS|
+|3| RTS|TDO|
 |2| DTR|TRST**|
-|9| DSR|SYSRST**|
+|10| DCD|SRST**|
 
 En la anterior tabla:
 
 * \* Pines compartidos para la comunicación UART y JTAG
 
 * \**Señales que no serán usadas para configurar la FPGA 
+
+![ft232svg](./img/ft232photo.svg)
 
 ![cl5a-75e](./img/5A-75E.jpg)
 
@@ -84,11 +84,14 @@ Agregar el siguiente contenido:
 #ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", GROUP="usb"
 SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", ATTRS{serial}=="FT1X69GT", SYMLINK+="ttyUSBFTDI"
 ```
+Reiniciar reglas
+
+`sudo udevadm control --reload-rules && udevadm trigger`
 
 #### Permisos de usuario
 
 ```bash
-sudo usermod -a -G dialout $USER
+sudo usermod -a $USER -G dialout
 ```
 
 ### 3. Configuración de FPGA Blink
@@ -122,8 +125,8 @@ volverá a tener un archivo que lo represente como un dispositivo serial-termina
 
 ## Referencias
 
-[Esquema de conexión de ft232r-jtag](http://vak.ru/doku.php/proj/bitbang/bitbang-jtag)
-
 [Debug adapter configuration](http://openocd.org/doc/html/Debug-Adapter-Configuration.html)
 
 [Debug Adapter Hardware](http://openocd.org/doc/html/Debug-Adapter-Hardware.html)
+
+[Esquema de conexión de ft232r-jtag old](http://vak.ru/doku.php/proj/bitbang/bitbang-jtag)

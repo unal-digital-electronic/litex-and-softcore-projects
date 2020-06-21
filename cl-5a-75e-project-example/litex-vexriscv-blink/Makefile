@@ -10,7 +10,7 @@ SOFT_DIR=build/software
 
 # Poner la dirección del puerto serial que está usando
 # o agregarlo en la línea de comandos ejemplo: make SERIAL=/dev/ttyUSB0x
-SERIAL?=/dev/ttyUSB1
+SERIAL?=/dev/ttyUSB0
 
 # Poner la dirección ip de la omega2 para poder conectarse a ella desde ssh
 # o agregarlo en la línea de comandos ejemplo: make IP=x.x.x.x

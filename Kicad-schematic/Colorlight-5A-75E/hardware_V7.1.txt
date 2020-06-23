@@ -1,0 +1,552 @@
+Colorlight 5A-75E V7.1 Hardware
+===============================
+
+Components
+----------
+
+* Lattice ECP5 `LFE5U-25F-6BG256C` ([product page](https://www.latticesemi.com/Products/FPGAandCPLD/ECP5))
+* Winbond `25Q32JVSIQ`, 32 Mbits SPI flash ([datasheet](datasheets/w25q32jv_spi_revc_08302016.pdf))
+* 2x Broadcom `B50612D` Gigabit Ethernet PHYs ([datasheet](datasheets/B50610-DS07-RDS.pdf))
+* 2x ESMT `M12L16161A-5T` 1M x 16bit 200MHz SDRAMs (organized as 1M x 32bit) ([datasheet](datasheets/M12L16161A.pdf))
+  or
+  2x WinBond `W9816G6JH-6` 1M x 16bit 166MHz SDRAMs (organized as 1M x 32bit)
+  ([datasheet](datasheets/w9816g6jh_a02-1489757.pdf))
+* 12x `74HC245T` Octal Bidirectional Transceiver (used for level translation to 5V)
+
+PCB overview
+------------
+
+![PCB front](images/cl-5a-75e-v71-front.jpg)
+![PCB back](images/cl-5a-75e-v71-back.jpg)
+
+Definitions
+-----------
+
+Power
+-----
+
+JTAG
+----
+
+JTAG is available on a 4-pin header next to the FPGA (U33). VCC/GND are available on a 2-pin header nearby.
+
+| Pin | Function |
+|-----|----------|
+| J27 | TCK      |
+| J31 | TMS      |
+| J32 | TDI      |
+| J30 | TDO      |
+|     |          |
+| J33 | *3.3V*   |
+| J34 | *GND*    |
+
+### SPI Flash (U31)
+
+| Flash Pin | 381 Pin | 256 Pin | Function | Name  | Notes |
+|-----------|---------|---------|----------|-------| ----- |
+| 1         | R2      | N8      | CS#      | PB15A |
+| 2         | V2      | T7      | SO       | PB11A |
+| 3         | _na_    | _na_    | WP#      |       | Wired to 3v3
+| 4         | _na_    | _na_    | GND      |       |
+| 5         | W2      | T8      | SI       | PB11B |
+| 6         | U3      | N9      | SCK      | CCLK  |
+| 7         | _na_    | _na_    | Hold#    |       | Wired to 3v3
+| 8         | _na_    | _na_    | VCC      |       | Wired to 3v3
+
+Connections
+===========
+
+Clock
+-----
+
+A 25MHz clock is available at 256-ball package pin P6, and is also connected to both PHYs.
+
+SDRAM, U29
+----------
+
+| U29 Pin | 381 Pin  | 256 Pin  | Name  |
+|---------|----------|----------|-------|
+| DQ0     | B17      | B13      | PT60A |
+| DQ1     | D15      | A11      | PT53A |
+| DQ2     | D12      | B9       | PT38A |
+| DQ3     | E14      | C11      | PT49B |
+| DQ4     | E12      | C9       | PT38B |
+| DQ5     | E13      | C10      | PT44B |
+| DQ6     | D11      | E8       | PT33A |
+| DQ7     | B8       | B5       | PT15B |
+| DQ8     | C10      | B6       | PT22B |
+| DQ9     | A8       | A6       | PT18B |
+| DQ10    | A7       | A5       | PT18A |
+| DQ11    | C7       | B4       | PT11B |
+| DQ12    | B5       | C3       | PL2C  |
+| DQ13    | B6       | B3       | PT4B  |
+| DQ14    | A5       | B2       | PL2B  |
+| DQ15    | A6       | A2       | PT4A  |
+| A0      | B13      | A9       | PT42A |
+| A1      | C14      | E10      | PT47B |
+| A2      | A16      | B12      | PT56A |
+| A3      | A17      | D13      | PT62A |
+| A4      | B16      | C12      | PT56B |
+| A5      | B15      | D11      | PT51A |
+| A6      | A14      | D10      | PT47A |
+| A7      | A13      | E9       | PT40B |
+| A8      | A12      | D9       | PT40A |
+| A9      | A11      | B7       | PT27B |
+| A10/AP  | B12      | C8       | PT35A |
+| BA      | B11      | A7       | PT29A |
+| LDQM    | *GND*    | *GND*    |       |
+| UDQM    | *GND*    | *GND*    |       |
+| CLK     | B9       | C6       | PT22A |
+| CKE     | *3.3V*   | *3.3V*   |       |
+| ~CS     | *GND*    | *GND*    |       |
+| ~RAS    | B10      | D7       | PT24B |
+| ~CAS    | A9       | E7       | PT24A |
+| ~WE     | A10      | C7       | PT27A |
+
+SDRAM, U32
+----------
+
+| U29 Pin | 381 Pin  | 256 Pin  | Name  |
+|---------|----------|----------|-------|
+| DQ0     | D5       | E2       | PL8B  |
+| DQ1     | E7       | E4       | PT9A  |
+| DQ2     | C5       | D3       | PL2D  |
+| DQ3     | E8       | E5       | PT13A |
+| DQ4     | D6       | A4       | PT6B  |
+| DQ5     | D7       | D4       | PT9B  |
+| DQ6     | C6       | C4       | PT11A |
+| DQ7     | D8       | D5       | PT13B |
+| DQ8     | E9       | D6       | PT20B |
+| DQ9     | D9       | E6       | PT20A |
+| DQ10    | E11      | D8       | PT33B |
+| DQ11    | C11      | A8       | PT29B |
+| DQ12    | C12      | B8       | PT35B |
+| DQ13    | D13      | B10      | PT44A |
+| DQ14    | D14      | B11      | PT49A |
+| DQ15    | C15      | E11      | PT51B |
+| A0      | B13      | A9       | PT42A |
+| A1      | C14      | E10      | PT47B |
+| A2      | A16      | B12      | PT56A |
+| A3      | A17      | D13      | PT62A |
+| A4      | B16      | C12      | PT56B |
+| A5      | B15      | D11      | PT51A |
+| A6      | A14      | D10      | PT47A |
+| A7      | A13      | E9       | PT40B |
+| A8      | A12      | D9       | PT40A |
+| A9      | A11      | B7       | PT27B |
+| A10/AP  | B12      | C8       | PT35A |
+| BA      | B11      | A7       | PT29A |
+| LDQM    | *GND*    | *GND*    |       |
+| UDQM    | *GND*    | *GND*    |       |
+| CLK     | B9       | C6       | PT22A |
+| CKE     | *3.3V*   | *3.3V*   |       |
+| ~CS     | *GND*    | *GND*    |       |
+| ~RAS    | B10      | D7       | PT24B |
+| ~CAS    | A9       | E7       | PT24A |
+| ~WE     | A10      | C7       | PT27A |
+
+PHY0, U3
+----------
+
+| U3 Pin  | 381 Pin  | 256 pin | Notes |
+|---------|----------|---------|-------|
+| GTXCLK  | G1       | M2      |
+| TXD[0]  | G2       | L1      |
+| TXD[1]  | H1       | L3      |
+| TXD[2]  | J1       | P2      |
+| TXD[3]  | J3       | L4      |
+| TX\_EN  | K1       | M3      |
+| RXC     | H2       | M1      | Connected to ~RESET via R100
+| RXD[0]  | K2       | N1      |
+| RXD[1]  | L1       | M5      |
+| RXD[2]  | N1       | N5      |
+| RXD[3]  | P1       | M6      |
+| RXD\_DV | P2       | N6      |
+| MDC     | N5       | P3      |
+| MDIO    | P5       | T2      |
+| ~RESET  | P4       | P5      | Drives RXC via R100
+
+PHY1, U7
+----------
+
+| U7 Pin  | 381 Pin  | 256 pin | Notes |
+|---------|----------|---------|-------|
+| GTXCLK  | U19      | M12     |
+| TXD[0]  | U20      | T14     |
+| TXD[1]  | T19      | R12     |
+| TXD[2]  | T20      | R13     |
+| TXD[3]  | R20      | R14     |
+| TX\_EN  | P19      | R15     |
+| RXC     | L19      | M16     | Connected to ~RESET via R107
+| RXD[0]  | P20      | P13     |
+| RXD[1]  | N19      | N13     |
+| RXD[2]  | N20      | P14     |
+| RXD[3]  | M19      | M15     |
+| RXD\_DV | M20      | L15     |
+| MDC     | N5       | P3      |
+| MDIO    | P5       | T2      |
+| ~RESET  | P4       | P5      | Drives RXC via R107
+
+Buffers
+-------
+
+The buffer connections have not been traced but it appears that buffer pins are not joined between connectors.
+
+LED, Button
+-----------
+
+There is a general purpose, FPGA controlled LED (DATA_LED-) at 381-U16/256-P11, active low (FPGA pin should be set to open drain).
+
+Additionally, there is a button (381-R16/256-M13, KEY+). When M13 is an input, pressing the button will read low, otherwise it will read high.
+
+Connector J1
+--------------
+
+| J1 Pin| HUB75 pin | 381 Pin  | 256 Pin  |
+|-------|-----------|----------|----------|
+| 1     | R0        |  B3      |  F3      |
+| 2     | G0        |  A2      |  F1      |
+| 3     | B0        |  B2      |  G3      |
+| 4     | *GND*     |  *GND*   |  *GND*   |
+| 5     | R1        |  B1      |  G2      |
+| 6     | G1        |  C2      |  H3      |
+| 7     | B1        |  C1      |  H5      |
+| 8     | E         |  J17     |  F15     |
+| 9     | A         |  F1      |  L2      |
+| 10    | B         |  F2      |  K1      |
+| 11    | C         |  E1      |  J5      |
+| 12    | D         |  E2      |  K2      |
+| 13    | CLK       |  C18     |  B16     |
+| 14    | STB       |  J18     |  J14     |
+| 15    | OE        |  H16     |  F12     |
+| 16    | *GND*     |  *GND*   |  *GND*   |
+
+Connector J2
+--------------
+
+| J2 Pin| HUB75 pin | 381 Pin  | 256 Pin  |
+|-------|-----------|----------|----------|
+| 1     | R0        |  E3      |  G4      |
+| 2     | G0        |  F4      |  G5      |
+| 3     | B0        |  F3      |  J2      |
+| 4     | *GND*     |  *GND*   |  *GND*   |
+| 5     | R1        |  G5      |  H2      |
+| 6     | G1        |  G3      |  J1      |
+| 7     | B1        |  H5      |  J3      |
+| 8     | E         |  J17     |  F15     |
+| 9     | A         |  F1      |  L2      |
+| 10    | B         |  F2      |  K1      |
+| 11    | C         |  E1      |  J5      |
+| 12    | D         |  E2      |  K2      |
+| 13    | CLK       |  C18     |  B16     |
+| 14    | STB       |  J18     |  J14     |
+| 15    | OE        |  H16     |  F12     |
+| 16    | *GND*     |  *GND*   |  *GND*   |
+
+Connector J3
+--------------
+
+| J3 Pin| HUB75 pin | 381 Pin  | 256 Pin  |
+|-------|-----------|----------|----------|
+| 1     | R0        |  D2      |  J4      |
+| 2     | G0        |  H3      |  K3      |
+| 3     | B0        |  H4      |  G1      |
+| 4     | *GND*     |  *GND*   |  *GND*   |
+| 5     | R1        |  J4      |  K4      |
+| 6     | G1        |  B4      |  C2      |
+| 7     | B1        |  A3      |  E3      |
+| 8     | E         |  J17     |  F15     |
+| 9     | A         |  F1      |  L2      |
+| 10    | B         |  F2      |  K1      |
+| 11    | C         |  E1      |  J5      |
+| 12    | D         |  E2      |  K2      |
+| 13    | CLK       |  C18     |  B16     |
+| 14    | STB       |  J18     |  J14     |
+| 15    | OE        |  H16     |  F12     |
+| 16    | *GND*     |  *GND*   |  *GND*   |
+
+Connector J4
+--------------
+
+| J1 Pin| HUB75 pin | 381 Pin  | 256 Pin  |
+|-------|-----------|----------|----------|
+| 1     | R0        |  C4      |  C1      |
+| 2     | G0        |  E6      |  A3      |
+| 3     | B0        |  C3      |  F4      |
+| 4     | *GND*     |  *GND*   |  *GND*   |
+| 5     | R1        |  F5      |  E1      |
+| 6     | G1        |  D3      |  F5      |
+| 7     | B1        |  E4      |  D1      |
+| 8     | E         |  J17     |  F15     |
+| 9     | A         |  F1      |  L2      |
+| 10    | B         |  F2      |  K1      |
+| 11    | C         |  E1      |  J5      |
+| 12    | D         |  E2      |  K2      |
+| 13    | CLK       |  C18     |  B16     |
+| 14    | STB       |  J18     |  J14     |
+| 15    | OE        |  H16     |  F12     |
+| 16    | *GND*     |  *GND*   |  *GND*   |
+
+Connector J5
+--------------
+
+| J5 Pin| HUB75 pin | 381 Pin  | 256 Pin  |
+|-------|-----------|----------|----------|
+| 1     | R0        | D1       | H4       |
+| 2     | G0        | E1       | J5       |
+| 3     | B0        | K4       | P1       |
+| 4     | *GND*     | *GND*    | *GND*    |
+| 5     | R1        | K5       | R1       |
+| 6     | G1        | K3       | L5       |
+| 7     | B1        | E5       | F2       |
+| 8     | E         | J17      | F15      |
+| 9     | A         | F1       | L2       |
+| 10    | B         | F2       | K1       |
+| 11    | C         | E1       | J5       |
+| 12    | D         | E2       | K2       |
+| 13    | CLK       | C18      | B16      |
+| 14    | STB       | J18      | J14      |
+| 15    | OE        | H16      | F12      |
+| 16    | *GND*     | *GND*    | *GND*    |
+
+Connector J6
+--------------
+
+| J6 Pin| HUB75 pin | 381 Pin  | 256 Pin  |
+|-------|-----------|----------|----------|
+| 1     | R0        | L5       | N3       |
+| 2     | G0        | L4       | M4       |
+| 3     | B0        | M1       | T4       |
+| 4     | *GND*     | *GND*    | *GND*    |
+| 5     | R1        | N2       | R5       |
+| 6     | G1        | M3       | R3       |
+| 7     | B1        | M4       | N4       |
+| 8     | E         | J17      | F15      |
+| 9     | A         | F1       | L2       |
+| 10    | B         | F2       | K1       |
+| 11    | C         | E1       | J5       |
+| 12    | D         | E2       | K2       |
+| 13    | CLK       | C18      | B16      |
+| 14    | STB       | J18      | J14      |
+| 15    | OE        | H16      | F12      |
+| 16    | *GND*     | *GND*    | *GND*    |
+
+Connector J7
+--------------
+
+| J7 Pin| HUB75 pin | 381 Pin  | 256 Pin  |
+|-------|-----------|----------|----------|
+| 1     | R0        | N3       | P4       |
+| 2     | G0        | N4       | R2       |
+| 3     | B0        | R3       | M8       |
+| 4     | *GND*     | *GND*    | *GND*    |
+| 5     | R1        | T3       | M9       |
+| 6     | G1        | R1       | T6       |
+| 7     | B1        | T1       | R6       |
+| 8     | E         | J17      | F15      |
+| 9     | A         | F1       | L2       |
+| 10    | B         | F2       | K1       |
+| 11    | C         | E1       | J5       |
+| 12    | D         | E2       | K2       |
+| 13    | CLK       | C18      | B16      |
+| 14    | STB       | J18      | J14      |
+| 15    | OE        | H16      | F12      |
+| 16    | *GND*     | *GND*    | *GND*    |
+
+Connector J8
+--------------
+
+| J6 Pin| HUB75 pin | 381 Pin  | 256 Pin  |
+|-------|-----------|----------|----------|
+| 1     | R0        | T2       | R8       |
+| 2     | G0        | U1       | R7       |
+| 3     | B0        | U2       | P8       |
+| 4     | *GND*     | *GND*    | *GND*    |
+| 5     | R1        | V1       | P7       |
+| 6     | G1        | W1       | N7       |
+| 7     | B1        | Y2       | M7       |
+| 8     | E         | J17      | F15      |
+| 9     | A         | F1       | L2       |
+| 10    | B         | F2       | K1       |
+| 11    | C         | E1       | J5       |
+| 12    | D         | E2       | K2       |
+| 13    | CLK       | C18      | B16      |
+| 14    | STB       | J18      | J14      |
+| 15    | OE        | H16      | F12      |
+| 16    | *GND*     | *GND*    | *GND*    |
+
+Connector J9
+--------------
+
+| J6 Pin| HUB75 pin | 381 Pin  | 256 Pin  |
+|-------|-----------|----------|----------|
+| 1     | R0        | U18      | M11      |
+| 2     | G0        | U17      | N11      |
+| 3     | B0        | T17      | P12      |
+| 4     | *GND*     | *GND*    | *GND*    |
+| 5     | R1        | K20      | K15      |
+| 6     | G1        | T18      | N12      |
+| 7     | B1        | F10      | F7       |
+| 8     | E         | J17      | F15      |
+| 9     | A         | F1       | L2       |
+| 10    | B         | F2       | K1       |
+| 11    | C         | E1       | J5       |
+| 12    | D         | E2       | K2       |
+| 13    | CLK       | C18      | B16      |
+| 14    | STB       | J18      | J14      |
+| 15    | OE        | H16      | F12      |
+| 16    | *GND*     | *GND*    | *GND*    |
+
+Connector J10
+--------------
+
+| J7 Pin| HUB75 pin | 381 Pin  | 256 Pin  |
+|-------|-----------|----------|----------|
+| 1     | R0        | R18      | T13      |
+| 2     | G0        | R17      | N14      |
+| 3     | B0        | P17      | M14      |
+| 4     | *GND*     | *GND*    | *GND*    |
+| 5     | R1        | N17      | P16      |
+| 6     | G1        | P18      | T15      |
+| 7     | B1        | N18      | L14      |
+| 8     | E         | J17      | F15      |
+| 9     | A         | F1       | L2       |
+| 10    | B         | F2       | K1       |
+| 11    | C         | E1       | J5       |
+| 12    | D         | E2       | K2       |
+| 13    | CLK       | C18      | B16      |
+| 14    | STB       | J18      | J14      |
+| 15    | OE        | H16      | F12      |
+| 16    | *GND*     | *GND*    | *GND*    |
+
+Connector J11
+--------------
+
+| J6 Pin| HUB75 pin | 381 Pin  | 256 Pin  |
+|-------|-----------|----------|----------|
+| 1     | R0        | J20      | K16      |
+| 2     | G0        | F29      | F29      |
+| 3     | B0        | J19      | J16      |
+| 4     | *GND*     | *GND*    | *GND*    |
+| 5     | R1        | G20      | J12      |
+| 6     | G1        | H20      | H15      |
+| 7     | B1        | G19      | G16      |
+| 8     | E         | J17      | F15      |
+| 9     | A         | F1       | L2       |
+| 10    | B         | F2       | K1       |
+| 11    | C         | E1       | J5       |
+| 12    | D         | E2       | K2       |
+| 13    | CLK       | C18      | B16      |
+| 14    | STB       | J18      | J14      |
+| 15    | OE        | H16      | F12      |
+| 16    | *GND*     | *GND*    | *GND*    |
+
+Connector J12
+--------------
+
+| J5 Pin| HUB75 pin | 381 Pin  | 256 Pin  |
+|-------|-----------|----------|----------|
+| 1     | R0        | M17      | P15      |
+| 2     | G0        | M18      | L12      |
+| 3     | B0        | L18      | L13      |
+| 4     | *GND*     | *GND*    | *GND*    |
+| 5     | R1        | F16      | D14      |
+| 6     | G1        | P16      | R16      |
+| 7     | B1        | J16      | E16      |
+| 8     | E         | J17      | F15      |
+| 9     | A         | F1       | L2       |
+| 10    | B         | F2       | K1       |
+| 11    | C         | E1       | J5       |
+| 12    | D         | E2       | K2       |
+| 13    | CLK       | C18      | B16      |
+| 14    | STB       | J18      | J14      |
+| 15    | OE        | H16      | F12      |
+| 16    | *GND*     | *GND*    | *GND*    |
+
+Connector J13
+--------------
+
+| J1 Pin| HUB75 pin | 381 Pin  | 256 Pin  |
+|-------|-----------|----------|----------|
+| 1     | R0        |  F19     |  H13     |
+| 2     | G0        |  F20     |  J13     |
+| 3     | B0        |  E20     |  H12     |
+| 4     | *GND*     |  *GND*   |  *GND*   |
+| 5     | R1        |  D20     |  G14     |
+| 6     | G1        |  E19     |  H14     |
+| 7     | B1        |  D19     |  G15     |
+| 8     | E         |  J17     |  F15     |
+| 9     | A         |  F1      |  L2      |
+| 10    | B         |  F2      |  K1      |
+| 11    | C         |  E1      |  J5      |
+| 12    | D         |  E2      |  K2      |
+| 13    | CLK       |  C18     |  B16     |
+| 14    | STB       |  J18     |  J14     |
+| 15    | OE        |  H16     |  F12     |
+| 16    | *GND*     |  *GND*   |  *GND*   |
+
+Connector J14
+--------------
+
+| J3 Pin| HUB75 pin | 381 Pin  | 256 Pin  |
+|-------|-----------|----------|----------|
+| 1     | R0        |  E18     |  E14     |
+| 2     | G0        |  F17     |  D16     |
+| 3     | B0        |  E17     |  C15     |
+| 4     | *GND*     |  *GND*   |  *GND*   |
+| 5     | R1        |  D17     |  B15     |
+| 6     | G1        |  D18     |  C16     |
+| 7     | B1        |  E16     |  C14     |
+| 8     | E         |  J17     |  F15     |
+| 9     | A         |  F1      |  L2      |
+| 10    | B         |  F2      |  K1      |
+| 11    | C         |  E1      |  J5      |
+| 12    | D         |  E2      |  K2      |
+| 13    | CLK       |  C18     |  B16     |
+| 14    | STB       |  J18     |  J14     |
+| 15    | OE        |  H16     |  F12     |
+| 16    | *GND*     |  *GND*   |  *GND*   |
+
+Connector J15
+--------------
+
+| J2 Pin| HUB75 pin | 381 Pin  | 256 Pin  |
+|-------|-----------|----------|----------|
+| 1     | R0        |  B20     |  A15     |
+| 2     | G0        |  C20     |  F16     |
+| 3     | B0        |  B19     |  A14     |
+| 4     | *GND*     |  *GND*   |  *GND*   |
+| 5     | R1        |  B18     |  E13     |
+| 6     | G1        |  A19     |  B14     |
+| 7     | B1        |  A18     |  A13     |
+| 8     | E         |  J17     |  F15     |
+| 9     | A         |  F1      |  L2      |
+| 10    | B         |  F2      |  K1      |
+| 11    | C         |  E1      |  J5      |
+| 12    | D         |  E2      |  K2      |
+| 13    | CLK       |  C18     |  B16     |
+| 14    | STB       |  J18     |  J14     |
+| 15    | OE        |  H16     |  F12     |
+| 16    | *GND*     |  *GND*   |  *GND*   |
+
+Connector J16
+--------------
+
+| J1 Pin| HUB75 pin | 381 Pin  | 256 Pin  |
+|-------|-----------|----------|----------|
+| 1     | R0        |  H17     |  G13     |
+| 2     | G0        |  H18     |  G12     |
+| 3     | B0        |  G18     |  E15     |
+| 4     | *GND*     |  *GND*   |  *GND*   |
+| 5     | R1        |  F18     |  F14     |
+| 6     | G1        |  G16     |  F13     |
+| 7     | B1        |  C17     |  C13     |
+| 8     | E         |  J17     |  F15     |
+| 9     | A         |  F1      |  L2      |
+| 10    | B         |  F2      |  K1      |
+| 11    | C         |  E1      |  J5      |
+| 12    | D         |  E2      |  K2      |
+| 13    | CLK       |  C18     |  B16     |
+| 14    | STB       |  J18     |  J14     |
+| 15    | OE        |  H16     |  F12     |
+| 16    | *GND*     |  *GND*   |  *GND*   |

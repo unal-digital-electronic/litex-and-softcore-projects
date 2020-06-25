@@ -1,0 +1,3 @@
+/home/johnny/projects/dev-openocd-tool/openocd-tool/host/esp8266/colorlight-5a-75e-openocd-config
+date,command,observations
+Thu 25 Jun 2020 08:47:02 AM -05,zip openocd-conf-esp8266-cl5a75e.zip openocd.cfg program.sh,Creacion de paquete

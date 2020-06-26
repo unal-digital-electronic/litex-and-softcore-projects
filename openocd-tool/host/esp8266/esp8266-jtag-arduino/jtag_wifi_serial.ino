@@ -1,7 +1,8 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
 
-#define LIMIT_ATTEMPS 5
+/* #define LIMIT_ATTEMPS 5 */
+#define DEBUG 1
 
 ESP8266WebServer server(80);
 
@@ -21,8 +22,8 @@ const String postForm = "<html>\
   <body>\
     <h1>Connect to network</h1><br>\
     <form method=\"post\" enctype=\"application/x-www-form-urlencoded\" action=\"/postform/\">\
-      <label for=\"netword\">Network:</label><br>\
-      <input type=\"text\" name=\"network\" value=\"networks\"><br>\
+      <label for=\"netword\">SSID:</label><br>\
+      <input type=\"text\" name=\"ssid\" value=\"name_ssid\"><br>\
       <label for=\"pass\">Password:</label><br>\
       <input type=\"text\" name=\"password\" value=\"password\"><br>\
       <input type=\"submit\" value=\"Submit\">\
@@ -34,13 +35,15 @@ const String postForm = "<html>\
   </body>\
 </html>";
 
-void handleRoot() {
+void handleRoot()
+{
   digitalWrite(led, 1);
   server.send(200, "text/html", postForm);
   digitalWrite(led, 0);
 }
 
-void handlePlain() {
+void handlePlain()
+{
   String message;
   if(WiFi.SSID() != NULL)
   {
@@ -50,7 +53,8 @@ void handlePlain() {
     digitalWrite(led, 1);
     server.send(405, "text/plain", "Method Not Allowed");
     digitalWrite(led, 0);
-  } else {
+  } else
+  {
     digitalWrite(led, 1);
     if(WiFi.status() != WL_CONNECTED)
     {
@@ -65,15 +69,19 @@ void handlePlain() {
   }
 }
 
-void handleForm() {
-  if (server.method() != HTTP_POST) {
+void handleForm()
+{
+  if (server.method() != HTTP_POST)
+  {
     digitalWrite(led, 1);
     server.send(405, "text/plain", "Method Not Allowed");
     digitalWrite(led, 0);
-  } else {
+  } else
+  {
     digitalWrite(led, 1);
     String message = "Successful:\n";
-    for (uint8_t i = 0; i < server.args(); i++) {
+    for (uint8_t i = 0; i < server.args(); i++)
+    {
       message += " " + server.argName(i) + ": " + server.arg(i) + "\n";
     }
     if(server.arg(0) != NULL && server.arg(1) != NULL)
@@ -84,11 +92,20 @@ void handleForm() {
       int attemps = 0;
       if(WiFi.status() == WL_CONNECTED)
       {
+#ifdef DEBUG == 1
+        Serial.println("WiFi disconnecting");
+#endif
         WiFi.disconnect();
       }
+#ifdef DEBUG == 1
+        Serial.println("WiFi station connecting");
+#endif
       WiFi.begin(ssid_ST, password_ST);
-      while ( WiFi.status() != WL_CONNECTED) {
+      while ( WiFi.status() != WL_CONNECTED)
+      {
+#ifdef DEBUG == 1
         Serial.println(attemps);
+#endif
         delay(1000);
         if(attemps == LIMIT_ATTEMPS || WiFi.status() == WL_CONNECTED)
         {
@@ -102,7 +119,9 @@ void handleForm() {
       }else
       {
         message += "IP: " + WiFi.localIP().toString();
+#if defined(DEBUG)
         Serial.println(WiFi.localIP());
+#endif
         server.send(200, "text/plain", message);
         digitalWrite(led, 0);
       }
@@ -110,7 +129,8 @@ void handleForm() {
   }
 }
 
-void handleNotFound() {
+void handleNotFound()
+{
   digitalWrite(led, 1);
   String message = "File Not Found\n\n";
   message += "URI: ";

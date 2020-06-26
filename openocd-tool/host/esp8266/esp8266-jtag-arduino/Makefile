@@ -10,6 +10,7 @@ DEVICE=$(s)
 LIB=$(l)
 # TARGET[uno, nano, esp8266]
 TARGET=esp8266
+TERM=picocom# minicom
 
 ifeq ($(TARGET),uno)
 ARDUINO-TARGET=arduino:avr:uno
@@ -28,7 +29,7 @@ ifeq ($(TARGET), uno)
 else ifeq ($(TARGET), nano)
 	arduino-cli upload -p $(DEVICE) --fqbn $(ARDUINO-TARGET) $(SRC)
 else ifeq ($(TARGET), esp8266)
-	esptool.py --port $(DEVICE) write_flash 0x00000 test.ino*bin
+	esptool.py --port $(DEVICE) write_flash 0x00000 $(SRC)*bin
 else
 	@echo "El programador no está en la lista"
 endif
@@ -41,7 +42,12 @@ else
 endif
 
 serial:
-	minicom -o -b $(BAUDRATE) -D $(DEVICE)
+	@ls ${SERIAL} || (echo "\n\nNo se encuentra ${SERIAL} conectado, verifique conexión o cambie el valor de SERIAL=${SERIAL} por un puerto serial existente\n\n"; exit 123;)
+ifeq ($(TERM), picocom)
+	picocom ${DEVICE} -b $(BAUDRATE)
+else ifeq ($(TERM), minicom)
+	minicom -o -b ${DEVIC} -D ${DEVICE}
+endif
 
 lib2search:
 ifeq ($(LIB),)

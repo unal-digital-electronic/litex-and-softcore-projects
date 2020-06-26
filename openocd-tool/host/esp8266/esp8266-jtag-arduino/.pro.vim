@@ -39,12 +39,12 @@ let g:ale_c_gcc_options = "-std=c11 -Wall " . includeFiles
 "************************************************************************
 nnoremap <F1> :echo MyMenuFuntions()<CR>
 " nnoremap <silent> <F5> :ALEDetail<CR>
-nnoremap <silent> <F5> :mak! <CR>
+nnoremap <silent> <F5> :mak! b<CR>
 nnoremap <silent> <F6> :call ToggleCopenCclose()<CR>
 nnoremap <silent> <F7> :ALEDetail<CR>
 " nnoremap <silent> <F6> :call ToggleCopenCclose()<CR>
 " nnoremap <silent> <F8> :make s<CR>
-nnoremap <silent> <F8> :mak! s-m<CR>
+nnoremap <silent> <F8> :mak! f<CR>
 " unmap <F9>
 " unmap! <F9>
 " nnoremap <F9> :call ToggleCopenCclose()<CR>
@@ -66,11 +66,11 @@ function MyMenuFuntions()
   let out = "Menu de Funciones:\n"
   let out .= " F1: Ver éste menú\n F2: Ubicación de archivo cargado en el buffer\n F3: Abrir NERDTree\n F4: TagBar\n"
   " let out .= " F6: copen/cclose registro de errores y advertencias al compilar\n"
-  let out .= " F5: Compilar (make all)\n"
+  let out .= " F5: build .bin\n"
   let out .= " F6: Toggle copen cclose\n"
   let out .= " F7: Check detalles de errores C, C++\n"
+  let out .= " F8: Flash esp8266\n"
   " let out .= " F9: Close buffer\n"
-  " let out .= " F8: Debug serial (make s)\n"
   let out .= " F10: Close buffer\n"
   return out
 endfunction

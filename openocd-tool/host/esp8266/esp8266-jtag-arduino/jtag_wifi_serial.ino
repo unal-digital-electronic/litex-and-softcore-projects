@@ -14,6 +14,7 @@ const int led = LED_BUILTIN;
 
 const String postForm = "<html>\
   <head>\
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=2\">\
     <title>ESP8266 Web Server POST handling</title>\
     <style>\
       body { background-color: #cccccc; font-family: Arial, Helvetica, Sans-Serif; Color: #000088; }\
@@ -30,6 +31,7 @@ const String postForm = "<html>\
     </form>\
     <h1>Network status</h1><br>\
     <form method=\"post\" enctype=\"text/plain\" action=\"/postplain/\">\
+      <label for=\"satatus\">Get WiFi status:</label><br>\
       <input type=\"submit\" value=\"Submit\">\
     </form>\
   </body>\
@@ -55,14 +57,24 @@ void handlePlain()
     digitalWrite(led, 0);
   } else
   {
+
+#ifdef DEBUG == 1
+    Serial.println("Get status");
+#endif
     digitalWrite(led, 1);
     if(WiFi.status() != WL_CONNECTED)
     {
+#ifdef DEBUG == 1
+      Serial.println("Connection FAIL !!!");
+#endif
       server.send(200, "text/plain", "Connection FAIL!!!\n" + message);
       digitalWrite(led, 0);
     }else
     {
-      message += "IP: " + WiFi.localIP().toString()+"\n";
+      message += "Successful!!! \nIP: " + WiFi.localIP().toString()+"\n";
+#ifdef DEBUG == 1
+      Serial.println(message);
+#endif
       server.send(200, "text/plain", message);
       digitalWrite(led, 0);
     }
@@ -79,7 +91,7 @@ void handleForm()
   } else
   {
     digitalWrite(led, 1);
-    String message = "Successful:\n";
+    String message = "Connecting:\n";
     for (uint8_t i = 0; i < server.args(); i++)
     {
       message += " " + server.argName(i) + ": " + server.arg(i) + "\n";
@@ -89,7 +101,7 @@ void handleForm()
       // UNE_HFC_EA1F XQIDC9HE
       String ssid_ST = server.arg(0);
       String password_ST = server.arg(1);
-      int attemps = 0;
+      server.send(200, "text/plain", message);
       if(WiFi.status() == WL_CONNECTED)
       {
 #ifdef DEBUG == 1
@@ -98,33 +110,14 @@ void handleForm()
         WiFi.disconnect();
       }
 #ifdef DEBUG == 1
-        Serial.println("WiFi station connecting");
+      Serial.println("WiFi station connecting");
 #endif
       WiFi.begin(ssid_ST, password_ST);
-      while ( WiFi.status() != WL_CONNECTED)
-      {
-#ifdef DEBUG == 1
-        Serial.println(attemps);
-#endif
-        delay(1000);
-        if(attemps == LIMIT_ATTEMPS || WiFi.status() == WL_CONNECTED)
-        {
-          break;
-        }
-        attemps++;
-      }
-      if (WiFi.status() != WL_CONNECTED)
-      {
-        server.send(200, "text/plain", "Connection FAIL!!!");
-      }else
-      {
-        message += "IP: " + WiFi.localIP().toString();
-#if defined(DEBUG)
-        Serial.println(WiFi.localIP());
-#endif
-        server.send(200, "text/plain", message);
-        digitalWrite(led, 0);
-      }
+      digitalWrite(led, 0);
+    } else
+    {
+      server.send(200, "text/plain", "Invalid arguments!!!");
+      digitalWrite(led, 0);
     }
   }
 }

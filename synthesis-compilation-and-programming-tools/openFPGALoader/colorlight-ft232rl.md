@@ -106,7 +106,7 @@ Recordar estar en el nivel del directorio clonado de openFPGALoader
 mkdir build
 cd build
 cmake ../
-make -j8
+make -j$(nproc)
 
 sudo cp 99-openfpgaloader.rules /etc/udev/rules.d/
 sudo udevadm control --reload-rules && udevadm trigger

@@ -14,14 +14,14 @@ SERIAL?=/dev/ttyUSB0
 
 # Poner la dirección ip de la omega2 para poder conectarse a ella desde ssh
 # o agregarlo en la línea de comandos ejemplo: make IP=x.x.x.x
-IP_OMEGA?=192.168.3.1
+IP_OMEGA?=192.168.0.11
 
 # Poner el directorio destino de la omega2 para subir el bitstream, el lugar ideal es aquel donde tenga el script program.sh
 # o agregarlo en la línea de comandos ejemplo: make IP=/root/
 PATH_DEST?=/root/
 
 NEXTPNR=nextpnr-ecp5
-CC=riscv32-unknown-elf-gcc
+CC=riscv64-unknown-elf-gcc
 
 all: ${GATE_DIR}/${TARGET}-flash.svf firmware
 

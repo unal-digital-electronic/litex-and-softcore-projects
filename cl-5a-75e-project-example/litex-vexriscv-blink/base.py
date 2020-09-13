@@ -7,6 +7,8 @@ from migen.genlib.io import CRG
 from litex.build.generic_platform import IOStandard, Subsignal, Pins
 from litex_boards.platforms import colorlight_5a_75e
 
+from litex.build.lattice.trellis import trellis_args, trellis_argdict
+
 from litex.soc.integration.soc_core import *
 from litex.soc.integration.builder import *
 
@@ -16,8 +18,8 @@ from ios import Led
 
 _serial = [
     ("serial", 0,
-        Subsignal("tx", Pins("F15")),  # J1.1
-        Subsignal("rx", Pins("F1")),  # J1.2
+        Subsignal("tx", Pins("F15")),  # J1.3
+        Subsignal("rx", Pins("G3")),  # J1.2
         IOStandard("LVCMOS33")
      ),
 ]

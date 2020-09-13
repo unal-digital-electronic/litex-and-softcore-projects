@@ -3,8 +3,8 @@
 # e-mail: jgcubidesc@gmail.com
 # date: Friday 15 May 2020
 
-TARGET=top
-TOP=top
+TARGET=colorlight_5a_75e
+TOP=colorlight_5a_75e
 GATE_DIR=build/gateware
 SOFT_DIR=build/software
 

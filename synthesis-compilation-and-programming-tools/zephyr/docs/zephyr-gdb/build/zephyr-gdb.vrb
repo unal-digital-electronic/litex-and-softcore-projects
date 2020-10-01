@@ -1,0 +1,11 @@
+\frametitle{Haciendo uso de dbg}
+\begin{lstlisting}[language=Bash, tabsize=2, label=code_, basicstyle=\small]
+ninja debugserver
+\end{lstlisting}
+
+\begin{lstlisting}[upquote=true, language=Bash, tabsize=2, label=code_, basicstyle=\small, columns=fullflexible, showspaces=false, showstringspaces=false]
+gdbgui --gdb \
+  ~/zephyr-sdk-0.11.3/riscv64-zephyr-elf/bin/riscv64-zephyr-elf-gdb\
+  --gdb-args=' -ex "target remote localhost:1234" ./zephyr.elf'
+\end{lstlisting}
+

@@ -1,0 +1,121 @@
+\documentclass{beamer}
+
+% \usepackage{lipsum}             % for dummy text
+% \usepackage{stix}               % use the STIX font (of course you can delete this line)
+\usepackage[utf8]{inputenc}
+
+% \usetheme{Notebook}
+% \usetheme{Blackboard}
+\usetheme{DarkConsole}
+% \usetheme{metropolis}
+% \usepackage{textcomp}
+
+% Insert all in preambule
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+  % backgroundcolor=\color{backcolour},
+  commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  % basicstyle=\ttfamily\footnotesize,
+  % breakatwhitespace=false,
+  % breaklines=true,
+  captionpos=b,
+  % keepspaces=true,
+  % numbers=left,
+  % numbersep=5pt,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  tabsize=2
+}
+
+\lstset{style=mystyle}
+
+
+\title{Título \texttt{x}}
+\subtitle{Subtítulo}
+\author{Author\footnote{\texttt{e-mail}\\}}
+
+\begin{document}
+
+\begin{frame}
+  \maketitle
+\end{frame}
+
+\begin{frame}{Contenido}
+  \tableofcontents
+\end{frame}
+
+\section{Variables de entorno de Zephyr}
+
+\begin{frame}[fragile]{Exportando variables de entorno}
+  Variables de entorno usadas por \textit{zephyr}
+% \usepackage{listings}
+\begin{lstlisting}[language=Bash, tabsize=2, label=_, basicstyle=\small]
+export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
+export ZEPHYR_SDK_INSTALL_DIR=~/zephyr-sdk-0.11.3
+export ZEPHYR_BASE=~/zephyrproject/zephyr
+\end{lstlisting}
+
+Variables entorno para usar un toolchain alternativo
+
+\begin{lstlisting}[language=Bash, tabsize=2, label=code_, basicstyle=\footnotesize]
+export ZEPHYR_TOOLCHAIN_VARIANT=cross-compile
+export CROSS_COMPILE=~/miniconda3/envs/fpga/bin/riscv32-elf-
+\end{lstlisting}
+\end{frame}
+
+\section{Configuración y compilación con zephyr}
+
+\begin{frame}[fragile]{Usando West y Ninja}
+  % \usepackage{listings}
+  \begin{lstlisting}
+west build -p auto -b board samples/hello_world
+cmake -B build -GNinja -DBOARD=board samples/hello_world
+  \end{lstlisting}
+% \usepackage{listings}
+\begin{lstlisting}[language=Bash, tabsize=2, label=code_1, basicstyle=\small]
+cd build/
+ninja run
+ninja clean
+ninja 
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]{Usando Make}
+% \usepackage{listings}
+\begin{lstlisting}[language=Bash, tabsize=2, label=code_, basicstyle=\small]
+cmake -B build -DBOARD=board samples/hello_world
+cd build/
+make
+\end{lstlisting}
+\end{frame}
+
+\section{zephyr y dbg}
+
+\begin{frame}[fragile]{Haciendo uso de dbg}
+% \usepackage{listings}
+\begin{lstlisting}[language=Bash, tabsize=2, label=code_, basicstyle=\small]
+ninja debugserver
+\end{lstlisting}
+
+\begin{lstlisting}[upquote=true, language=Bash, tabsize=2, label=code_, basicstyle=\small, columns=fullflexible, showspaces=false, showstringspaces=false]
+gdbgui --gdb \
+  ~/zephyr-sdk-0.11.3/riscv64-zephyr-elf/bin/riscv64-zephyr-elf-gdb\
+  --gdb-args=' -ex "target remote localhost:1234" ./zephyr.elf'
+\end{lstlisting}
+
+\end{frame}
+
+
+\end{document}

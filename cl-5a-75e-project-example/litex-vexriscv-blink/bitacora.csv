@@ -1,0 +1,9 @@
+/home/johnny/projects/litex-and-softcore-projects/cl-5a-75e-project-example/litex-vexriscv-blink
+date,command,observations
+Sun 13 Sep 2020 07:10:30 PM -05,make clean,limpiando construcciones anteriores
+Sun 13 Sep 2020 07:13:06 PM -05,make gateware,sintetizando el softcore y la bios
+Sun 13 Sep 2020 07:13:35 PM -05,make firmware,construyen el firmware
+Sun 13 Sep 2020 07:14:26 PM -05,./load.py,programando la flash con el softcore sintetizado y la bios
+Sun 13 Sep 2020 07:15:26 PM -05,make litex_term,iniciando el servidor litex
+Sun 13 Sep 2020 07:15:50 PM -05,oprimir el boton de reset para cargar el firmware de manera serial,
+Sun 13 Sep 2020 07:16:57 PM -05,make litex_term SERIAL=/dev/ttyUSB1,si cuenta con varios seriales puede indicarle desde cual ver el servidor litex

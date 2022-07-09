@@ -5,7 +5,7 @@
 Conda permite administrar las herramientas de desarrollo de manera sencilla
 ya que en éste caso nos ofrece los precompilados de Yosys, nextpnr, compiladores
 y otras herramientas útiles, que en otros casos deberían ser compiladas desde
-las fuentes, lo que requiere más recursos.
+las fuentes, lo que requiere más recursos en tiempo y capacidad de máquina.
 
 Los comandos a usar son sencillos tanto para instalar, actualizar y ejecutar entornos.
 A continuación se explica los pasos de instalación de las herramientas.
@@ -19,6 +19,8 @@ A continuación se explica los pasos de instalación de las herramientas.
 ## Pasos de instalación
 
 ### 1. Instalación de MINICONDA
+
+[![asciicast](https://asciinema.org/a/506681.svg)](https://asciinema.org/a/506681)
 
 **Nota**: No existe problema si en su PC tiene una versión de `python3` instalada.
 
@@ -37,6 +39,13 @@ bash Miniconda3-latest-Linux-x86_64.sh
 
 **nota 2**: Ésta instalación afecta directamente al bashrc ubicado en `~/.bashrc`,
 se recomienda revisar el estado de éste archivo donde miniconda3 agregó las líneas al final
+
+**Recomendación**: Desactive el lanzador automático del entorno *base* de miniconda, la activación
+manual le permitirá un mayor control sobre las acciones a realizar a futuro desde el bash.
+
+```bash
+conda config --set auto_activate_base false
+```
 
 #### 1.4 Actualizar miniconda
 

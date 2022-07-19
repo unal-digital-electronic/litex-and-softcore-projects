@@ -1,3 +1,0 @@
-# Proyectos con litex
-
-Hola.

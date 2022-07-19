@@ -1,6 +1,6 @@
 # Litex vexriscv blink en colorlight5a-75e
 
-![Demostración](./video/vexriscv-cl-5a-75e.gif)
+<!-- ![Demostración](video/vexriscv-cl-5a-75e.gif) -->
 
 
 A diferencia del ejemplo del litex-riscv-blink, éste ejemplo hace uso de la

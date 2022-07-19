@@ -22,7 +22,7 @@ plugins:
 # lang: es
 
 theme:
-  name: 'mkdocs' # 'mkdocs' 'material'
+  name: 'readthedocs' # 'mkdocs' # 'mkdocs' 'material'
   highlightjs: false # true/false false para prueba sin internet
   hljs_languages:
     - javascript

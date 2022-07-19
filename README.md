@@ -1,4 +1,3 @@
-# litex-and-softcore-projects
+# Proyectos con litex
 
-[wiki](https://github.com/unal-digital-electronic/litex-and-softcore-projects/wiki)
 

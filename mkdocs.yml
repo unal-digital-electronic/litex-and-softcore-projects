@@ -1,6 +1,5 @@
-site_name: Litex
+site_name: Simulación de circutos con herramientas open source
 site_dir: build
-# docs_dir: src
 markdown_extensions:
   - admonition #https://squidfunk.github.io/mkdocs-material/extensions/admonition/
   - attr_list
@@ -8,21 +7,13 @@ markdown_extensions:
 # use_directory_urls: false
 plugins:
   - search
-  # - pdf-export:
-  #    combined: true
-  # - exclude:
-  #   glob:
-  #     - exclude/this/path/*
-  #     - "*.tmp"
-  #     - "*.pdf"
-  #     - "*.gz"
-  #   regex:
-  #     - '.*\.(tmp|bin|tar)$'
+#  - pdf-export:
+#      combined: true
 
 # lang: es
 
 theme:
-  name: 'readthedocs' # 'mkdocs' # 'mkdocs' 'material'
+  name: 'readthedocs' # 'mkdocs' 'material'
   highlightjs: false # true/false false para prueba sin internet
   hljs_languages:
     - javascript
@@ -36,8 +27,5 @@ theme:
 extra_css: [extra.css] # Active this (uncomment) if you have external css in docs/extra.css
 
 nav:
-   - Intro: index.md
-   # - Instalando herramientas: 
-   #   - Herramientas de sintesis y compilación: synthesis-compilation-and-programming-tools/CONDA-ice40-ecp5-cross-compilers/README.md
-   #   - OpenFPGALOader: openocd-tool/host/ft232r/colorlight-5A-75E-openocd-config/README.md
-
+   - Home: index.md
+   - Instalación de herramientas: install.md

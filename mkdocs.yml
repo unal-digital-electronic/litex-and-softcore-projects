@@ -1,4 +1,4 @@
-site_name: Simulación de circutos con herramientas open source
+site_name: Projects LiTeX UNAL
 site_dir: _readthedocs/html
 markdown_extensions:
   - admonition #https://squidfunk.github.io/mkdocs-material/extensions/admonition/
@@ -28,9 +28,6 @@ extra_css: [extra.css] # Active this (uncomment) if you have external css in doc
 
 nav:
    - Home: index.md
-   - Instalación de herramientas: install.md
-   - Básicos:
-       - Divisor de voltaje: ./basic/voltage-divider/README.md
-       - Divisor de corriente: ./basic/current-divider/README.md
-       - Circuito RC sin fuente: ./basic/rc-circuit-without-source/README.md
+   - Instalación de herramientas:
+     - Herramientas de sintesis y compilación: synthesis-compilation-and-programming-tools/CONDA-ice40-ecp5-cross-compilers/README.md
 

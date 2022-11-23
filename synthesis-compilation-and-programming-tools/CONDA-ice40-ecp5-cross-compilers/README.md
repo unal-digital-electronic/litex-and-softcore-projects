@@ -78,10 +78,10 @@ conda activate fpga
 ### 2. Instalación de NEXTPNR, YOSYS y cross-compiladores
 
 ```bash
-conda install --channel "TimVideos" nextpnr-ecp5
-conda install --channel "TimVideos" nextpnr-ice40
-conda install --channel "TimVideos" gcc-riscv32-elf-newlib
-conda install --channel "TimVideos" iceprog
+conda install --channel "litex-hub" nextpnr-ecp5
+conda install --channel "litex-hub" nextpnr-ice40
+conda install --channel "litex-hub" gcc-riscv32-elf-newlib
+conda install --channel "litex-hub" iceprog
 ```
 
 #### Verificación de herramientas instaladas
